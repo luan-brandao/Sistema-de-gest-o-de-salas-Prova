@@ -1,0 +1,129 @@
+.home-container {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.home-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.home-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.home-input:focus {
+    border-color: #2196F3;
+    outline: none;
+}
+
+.home-submit-button {
+    padding: 12px;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.home-submit-button:hover {
+    background-color: #1976D2;
+}
+
+.home-rooms-button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.home-rooms-button:hover {
+    background-color: #45A049;
+}
+
+.home-profile-button {
+    padding: 12px;
+    background-color: #2196F3; /* Azul para o botão de perfil */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Para manter o botão do mesmo tamanho que os outros */
+}
+
+.home-profile-button:hover {
+    background-color: #1976D2; /* Azul mais escuro ao passar o mouse */
+}
+
+.home-logout-button {
+    margin-top: 20px;
+    margin-bottom: 20px; /* Adiciona margem abaixo do botão de logout */
+    padding: 10px 20px;
+    background-color: #f44336; /* Cor vermelha para logout */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.home-logout-button:hover {
+    background-color: #d32f2f; /* Cor mais escura ao passar o mouse */
+}
+
+.success-message {
+    margin-top: 20px; /* Espaço acima da mensagem */
+    padding: 10px; /* Padding interno */
+    background-color: #d4edda; /* Fundo verde claro */
+    color: #155724; /* Texto verde escuro */
+    border: 1px solid #c3e6cb; /* Borda verde */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+.video-chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    flex: 1;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    background: black;
+}

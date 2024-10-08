@@ -1,0 +1,121 @@
+body {
+    background-color: #e9ecef; /* Cor de fundo mais clara para todo o body */
+}
+
+.salas-container {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff; /* Cor de fundo branca para o contêiner */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
+}
+
+.salas-title {
+    text-align: center;
+    font-size: 2.5rem; /* Tamanho da fonte maior */
+    margin-bottom: 30px; /* Aumento da margem inferior */
+    color: #333;
+    font-weight: bold; /* Negrito */
+}
+
+.salas-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.salas-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f8ff; /* Azul claro */
+    margin-bottom: 20px; /* Aumento da margem inferior */
+    padding: 20px; /* Aumento do padding */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.salas-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Efeito de sombra ao passar o mouse */
+}
+
+.salas-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Para expandir a área de informações */
+    margin-right: 20px; /* Espaçamento à direita */
+}
+
+.salas-name {
+    font-size: 1.5rem; /* Tamanho da fonte maior */
+    font-weight: 700; /* Peso da fonte mais forte */
+    color: #007bff; /* Azul mais vibrante */
+    margin-bottom: 5px; /* Margem inferior para espaçamento */
+}
+
+.salas-capacity {
+    font-size: 1rem; /* Tamanho da fonte um pouco maior */
+    color: #495057; /* Cor mais escura para legibilidade */
+}
+
+.salas-button {
+    padding: 12px 25px; /* Aumento do padding */
+    background-color: #28a745; /* Verde para o botão de entrar */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
+    font-size: 0.9rem; /* Tamanho da fonte */
+    font-weight: 500; /* Peso da fonte */
+}
+
+.salas-button:hover {
+    background-color: #218838; /* Verde escuro ao passar o mouse */
+    transform: translateY(-2px); /* Pequena elevação ao passar o mouse */
+}
+
+.salas-button-delete {
+    padding: 12px 25px; /* Aumento do padding */
+    background-color: #dc3545; /* Vermelho para o botão de excluir */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
+    font-size: 0.9rem; /* Tamanho da fonte */
+    font-weight: 500; /* Peso da fonte */
+    margin-left: 10px; /* Espaçamento entre os botões */
+}
+
+.salas-button-delete:hover {
+    background-color: #c82333; /* Vermelho escuro ao passar o mouse */
+}
+
+.salas-item:last-child {
+    margin-bottom: 0;
+}
+
+.salas-item-empty {
+    text-align: center;
+    font-size: 1.5rem; /* Tamanho da fonte maior */
+    color: #999;
+}
+.back-button {
+    margin-top: 20px; /* Espaço acima do botão */
+    padding: 12px 25px; /* Aumento do padding */
+    background-color: #007bff; /* Azul para o botão */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Azul escuro ao passar o mouse */
+}
