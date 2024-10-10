@@ -9,14 +9,14 @@ const initializeSocket = (server) => {
     });
 
     io.on('connection', (socket) => {
-        const userName = socket.handshake.query.userName; // Captura o nome do usuário da query
+        const userName = socket.handshake.query.userName; 
         console.log('Novo usuário conectado:', userName || socket.id);
 
         socket.on('joinRoom', (roomId) => {
             socket.join(roomId);
             console.log(`Usuário ${userName || socket.id} entrou na sala ${roomId}`);
 
-            // Enviar mensagem de entrada para os outros usuários
+            
             io.to(roomId).emit('receiveMessage', {
                 name: 'Sistema',
                 message: `${userName} entrou na sala.`,
@@ -33,21 +33,21 @@ const initializeSocket = (server) => {
             io.to(audioData.roomId).emit('receiveMessage', audioData);
         });
 
-        // Evento quando o usuário inicia uma chamada de vídeo
+        
         socket.on('startVideoCall', (data) => {
             const { roomId, userName } = data;
             console.log(`${userName} iniciou uma chamada de vídeo na sala ${roomId}`);
             
-            // Notificar os outros usuários na sala que o usuário iniciou uma chamada de vídeo
+            
             io.to(roomId).emit('userStartedVideoCall', { userName });
         });
 
-        // Evento quando o usuário sai de uma chamada de vídeo
+        
         socket.on('stopVideoCall', (data) => {
             const { roomId, userName } = data;
             console.log(`${userName} saiu da chamada de vídeo na sala ${roomId}`);
             
-            // Notificar os outros usuários na sala que o usuário saiu da chamada de vídeo
+            
             io.to(roomId).emit('userStoppedVideoCall', { userName });
         });
 
@@ -55,7 +55,7 @@ const initializeSocket = (server) => {
             socket.leave(roomId);
             console.log(`Usuário ${userName || socket.id} saiu da sala ${roomId}`);
 
-            // Enviar mensagem de saída para os outros usuários
+            
             io.to(roomId).emit('receiveMessage', {
                 name: 'Sistema',
                 message: `${userName} saiu da sala.`,

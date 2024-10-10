@@ -12,7 +12,7 @@ const Chat = ({ roomId }) => {
     const [mediaRecorder, setMediaRecorder] = useState(null);
     const [userName, setUserName] = useState('');
     const [isVideoCallActive, setIsVideoCallActive] = useState(false);
-    const [videoUsers, setVideoUsers] = useState([]); // Lista de usuários na chamada de vídeo
+    const [videoUsers, setVideoUsers] = useState([]); 
     const videoRef = useRef(null);
     const navigate = useNavigate();
 
@@ -56,12 +56,12 @@ const Chat = ({ roomId }) => {
             setMessages((prevMessages) => [...prevMessages, messageData]);
         });
 
-        // Evento quando um usuário inicia uma chamada de vídeo
+        
         newSocket.on('userStartedVideoCall', (data) => {
             setVideoUsers((prevUsers) => [...prevUsers, data.userName]);
         });
 
-        // Evento quando um usuário sai da chamada de vídeo
+        
         newSocket.on('userStoppedVideoCall', (data) => {
             setVideoUsers((prevUsers) => prevUsers.filter((name) => name !== data.userName));
         });
@@ -100,7 +100,7 @@ const Chat = ({ roomId }) => {
                 const audioBlob = new Blob([event.data], { type: 'audio/wav' });
                 const audioUrl = URL.createObjectURL(audioBlob);
 
-                // Enviar o áudio para o servidor
+                
                 const messageData = {
                     roomId,
                     audio: audioUrl,

@@ -1,7 +1,7 @@
 const userRepository = require('../repositories/UserRepository');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { v4: uuidv4 } = require('uuid'); // Importando o UUID
+const { v4: uuidv4 } = require('uuid'); 
 
 class UserController {
     async index(req, res) {
@@ -30,24 +30,24 @@ class UserController {
         try {
             const { name, email, password } = req.body;
     
-            // Verifica se já existe um usuário com o mesmo e-mail
+            
             const existingUser = await userRepository.getUserByEmail(email);
             if (existingUser) {
                 return res.status(400).json({ message: 'E-mail já está em uso.' });
             }
     
-            // Gera um novo UUID para o usuário
+            
             const userId = uuidv4();
     
-            // Criptografa a senha
+            
             const hashedPassword = await bcrypt.hash(password, 10);
     
-            // Cria o novo usuário
+            
             const newUser = await userRepository.createUser({
                 id: userId,
                 name,
                 email,
-                password: hashedPassword // Armazena a senha criptografada
+                password: hashedPassword 
             });
     
             res.status(201).json({ message: 'Usuário criado com sucesso!', newUser });
@@ -59,8 +59,8 @@ class UserController {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const { name, email } = req.body; // Remova a senha se não for permitido atualizar a senha no perfil
-            const updatedUser = await userRepository.updateUser(id, { name, email }); // Não inclua a senha, a menos que a senha seja um campo que você deseje atualizar
+            const { name, email } = req.body; 
+            const updatedUser = await userRepository.updateUser(id, { name, email }); 
             if (!updatedUser) {
                 return res.status(404).json({ message: 'Usuário não encontrado.' });
             }

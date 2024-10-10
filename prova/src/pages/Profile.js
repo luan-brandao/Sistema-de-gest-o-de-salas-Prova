@@ -40,6 +40,7 @@ const Profile = () => {
     const handleUpdate = async () => {
         const token = sessionStorage.getItem('token');
         try {
+            // Faz a requisição para atualizar os dados do usuário
             await axios.put(`http://localhost:3000/update/${userInfo.id}`, {
                 name,
                 email,
@@ -48,6 +49,14 @@ const Profile = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
+    
+            // Atualiza o estado userInfo com os novos dados
+            setUserInfo(prev => ({
+                ...prev,
+                name,
+                email,
+            }));
+    
             alert('Perfil atualizado com sucesso!');
             setIsEditing(false); // Fecha o modo de edição após atualizar
         } catch (error) {
@@ -61,6 +70,7 @@ const Profile = () => {
             }
         }
     };
+    
 
     if (!userInfo) {
         return <p>Carregando informações do usuário...</p>;

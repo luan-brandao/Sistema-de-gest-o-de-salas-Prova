@@ -7,28 +7,53 @@ const roomRoutes = require("./routes/RoomRoutes");
 const authMiddleware = require('./middlewares/authMiddleware');
 const authRoomMiddleware = require('./middlewares/auth');
 const http = require('http');
-const initializeSocket = require('./service/socket'); // Importando a função para inicializar o Socket.IO
+const initializeSocket = require('./service/socket');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc'); // Importa o swagger-jsdoc
 require('dotenv').config();
 
 const app = express();
-const server = http.createServer(app); // Criando o servidor HTTP com Express
+const server = http.createServer(app);
 
-// Habilitar CORS
+
 app.use(cors());
 app.use(express.json());
+
+
+const swaggerOptions = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Documentação da API",
+            version: "1.0.0",
+            description: "Documentação das rotas da API"
+        },
+        servers: [
+            {
+                url: "http://localhost:3000",
+            },
+        ],
+    },
+    apis: ["./src/routes/*.js"], 
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// Rotas
 app.use(userRoutes);
 app.use(authMiddleware);
 app.use('/api/rooms', authRoomMiddleware, roomRoutes);
 
-// Conectando ao MongoDB
+
 connectMongoDB();
-// Conectando ao MySQL
+
 connectPg();
 
-// Inicializando o Socket.IO
+
 const io = initializeSocket(server);
 
-// Iniciando o servidor
+
 server.listen(3000, () => {
     console.log("Servidor rodando na porta 3000");
 });

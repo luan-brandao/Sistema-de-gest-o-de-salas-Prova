@@ -6,7 +6,7 @@ class RoomRepository {
     static async createRoom(roomData) {
         const room = new Room({
             ...roomData,
-            currentParticipants: 0, // Inicializa o número de participantes
+            currentParticipants: 0,
         });
         await room.save();
         return room;
@@ -27,11 +27,10 @@ class RoomRepository {
 
         // Verifica se a capacidade máxima foi atingida
         if (room.currentParticipants < room.capacity) {
-            room.currentParticipants += 1; // Incrementa o número de participantes
-            await room.save();
+            room.currentParticipants += 1; 
             return room;
         } else {
-            throw new Error('Capacidade máxima atingida'); // Lança um erro se a capacidade for atingida
+            throw new Error('Capacidade máxima atingida'); 
         }
     }
 
@@ -52,8 +51,7 @@ class RoomRepository {
         return room;
     }
 
-    // Método para excluir uma sala
-// repositories/RoomRepository.js
+ 
     static async deleteRoom(roomId) {
         const room = await Room.findById(roomId);
         
@@ -61,12 +59,12 @@ class RoomRepository {
             throw new Error('Sala não encontrada');
         }
 
-        // Verifica se a sala está vazia
+        
         if (room.currentParticipants > 0) {
             throw new Error('A sala não pode ser excluída porque ainda tem participantes.');
         }
 
-        // Exclui a sala
+        
         await Room.deleteOne({ _id: roomId });
         return { message: 'Sala excluída com sucesso.' };
     }

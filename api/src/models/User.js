@@ -32,7 +32,7 @@ const User = sequelize.define('User', {
         },
     },
 }, {
-    // Adiciona campos createdAt e updatedAt
+    
     timestamps: true,
 });
 

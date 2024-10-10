@@ -11,6 +11,12 @@ const Cadastro = () => {
     const navigate = useNavigate(); // Hook para navegação
 
     const handleRegister = async () => {
+        // Validação da senha
+        if (password.length < 6) {
+            setErrorMessage('A senha deve ter pelo menos 6 dígitos.');
+            return; // Impede o envio se a senha for inválida
+        }
+
         try {
             const response = await axios.post('http://localhost:3000/create', {
                 name,
@@ -25,6 +31,7 @@ const Cadastro = () => {
         } catch (error) {
             console.error(error);
             // Exibir erro no corpo da página
+            setErrorMessage('Erro ao cadastrar usuário. Tente novamente.'); // Atualiza a mensagem de erro
         }
     };
 

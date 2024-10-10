@@ -4,7 +4,7 @@ const User = require('../models/User');
 class UserRepository {
     async getAllUsers() {
         try {
-            return await User.findAll(); // Usando findAll para retornar todos os usuários
+            return await User.findAll(); 
         } catch (error) {
             throw new Error('Erro ao buscar usuários: ' + error.message);
         }
@@ -12,7 +12,7 @@ class UserRepository {
 
     async getUserById(id) {
         try {
-            return await User.findByPk(id); // Usando findByPk para buscar pelo ID
+            return await User.findByPk(id); 
         } catch (error) {
             throw new Error('Erro ao buscar usuário: ' + error.message);
         }
@@ -20,7 +20,7 @@ class UserRepository {
 
     async getUserByEmail(email) {
         try {
-            return await User.findOne({ where: { email } }); // Usando a cláusula where
+            return await User.findOne({ where: { email } }); 
         } catch (error) {
             throw new Error('Erro ao buscar usuário por email: ' + error.message);
         }
@@ -28,7 +28,7 @@ class UserRepository {
 
     async createUser(userData) {
         try {
-            return await User.create(userData); // Usando create do Sequelize
+            return await User.create(userData); 
         } catch (error) {
             throw new Error('Erro ao criar usuário: ' + error.message);
         }
@@ -36,11 +36,11 @@ class UserRepository {
 
     async updateUser(id, userData) {
         try {
-            const [updated] = await User.update(userData, { where: { id } }); // Usando update com where
+            const [updated] = await User.update(userData, { where: { id } });
             if (!updated) {
                 throw new Error('Usuário não encontrado para atualização.');
             }
-            return await this.getUserById(id); // Retornando o usuário atualizado
+            return await this.getUserById(id); 
         } catch (error) {
             throw new Error('Erro ao atualizar usuário: ' + error.message);
         }
@@ -49,7 +49,7 @@ class UserRepository {
 
     async deleteUser(id) {
         try {
-            const result = await User.destroy({ where: { id } }); // Usando destroy com where
+            const result = await User.destroy({ where: { id } }); 
             return result > 0; // Retorna true se um usuário foi deletado
         } catch (error) {
             throw new Error('Erro ao deletar usuário: ' + error.message);
@@ -57,4 +57,4 @@ class UserRepository {
     }
 }
 
-module.exports = new UserRepository(); // Singleton
+module.exports = new UserRepository(); 

@@ -9,15 +9,15 @@ const roomSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true, // Campo obrigatório
+        required: true, 
     },
     description: {
         type: String,
-        required: false, // Campo opcional
+        required: false, 
     },
     capacity: {
         type: Number,
-        required: true, // Campo obrigatório
+        required: true,
     },
     currentParticipants: {
         type: Number,
@@ -25,11 +25,11 @@ const roomSchema = new mongoose.Schema({
     },
     isActive: {
         type: Boolean,
-        default: true, // Padrão para true
+        default: true, 
     },
     createdAt: {
         type: Date,
-        default: Date.now, // Data de criação padrão
+        default: Date.now, 
     },
 });
 

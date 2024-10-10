@@ -1,26 +1,159 @@
 const { Router } = require("express");
 const router = Router();
 const UserController = require("../controllers/UserController");
-const authMiddleware = require("../middlewares/authMiddleware"); // Importa o middleware
+const authMiddleware = require("../middlewares/authMiddleware");
 
-// Rota para listar todos os usuários (pode ser pública ou protegida)
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Gerenciamento de usuários
+ */
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Retorna todos os usuários
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Lista de usuários
+ */
 router.get("/users", UserController.index);
 
-// Rota para criar um novo usuário
-router.post("/create", UserController.store); // POST para criação
+/**
+ * @swagger
+ * /create:
+ *   post:
+ *     summary: Cria um novo usuário
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Usuário criado com sucesso
+ */
+router.post("/create", UserController.store);
 
-// Rota para exibir um único usuário por ID
+/**
+ * @swagger
+ * /show/{id}:
+ *   get:
+ *     summary: Exibe um usuário por ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Dados do usuário
+ */
 router.get("/show/:id", UserController.show);
 
-// Rota para atualizar um usuário por ID (protegida)
+/**
+ * @swagger
+ * /update/{id}:
+ *   put:
+ *     summary: Atualiza um usuário por ID
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Usuário atualizado com sucesso
+ */
 router.put("/update/:id", authMiddleware, UserController.update);
 
-// Rota para deletar um usuário por ID (protegida)
+/**
+ * @swagger
+ * /delete/{id}:
+ *   delete:
+ *     summary: Deleta um usuário por ID
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário deletado com sucesso
+ */
 router.delete("/delete/:id", authMiddleware, UserController.delete);
 
-// Rota para login de usuário
-router.post("/login", UserController.login); // Rota para login
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Faz login de um usuário
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login bem-sucedido
+ */
+router.post("/login", UserController.login);
 
+/**
+ * @swagger
+ * /me:
+ *   get:
+ *     summary: Retorna o usuário autenticado
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Dados do usuário autenticado
+ */
 router.get("/me", authMiddleware, UserController.getMe);
 
 module.exports = router;

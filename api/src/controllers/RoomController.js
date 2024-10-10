@@ -1,8 +1,8 @@
-// controllers/RoomController.js
+
 const RoomRepository = require('../repositories/RoomRepository');
 
 class RoomController {
-    // Método para criar uma nova sala
+    
     static async createRoom(req, res) {
         try {
             const room = await RoomRepository.createRoom(req.body);
@@ -12,7 +12,7 @@ class RoomController {
         }
     }
 
-    // Método para obter todas as salas
+    
     static async getAllRooms(req, res) {
         try {
             const rooms = await RoomRepository.getAllRooms();
@@ -22,7 +22,6 @@ class RoomController {
         }
     }
 
-    // Método para entrar na sala
     static async enterRoom(req, res) {
         try {
             const updatedRoom = await RoomRepository.enterRoom(req.params.roomId);
@@ -33,7 +32,7 @@ class RoomController {
         }
     }
 
-    // Método para sair da sala
+    
     static async leaveRoom(req, res) {
         try {
             const room = await RoomRepository.leaveRoom(req.params.roomId);
@@ -43,8 +42,7 @@ class RoomController {
         }
     }
 
-    // Método para excluir uma sala se estiver vazia
-// Método para excluir uma sala se estiver vazia
+   
     static async deleteRoom(req, res) {
         try {
             const room = await RoomRepository.getRoomById(req.params.roomId);
@@ -53,12 +51,12 @@ class RoomController {
                 return res.status(404).json({ message: 'Sala não encontrada.' });
             }
 
-            // Verificar se a sala está vazia (usando o campo currentParticipants)
+            
             if (room.currentParticipants > 0) {
                 return res.status(400).json({ message: 'A sala não pode ser excluída porque ainda tem participantes ativos.' });
             }
 
-            // Se a sala estiver vazia, excluí-la
+           
             await RoomRepository.deleteRoom(req.params.roomId);
             return res.status(200).json({ message: 'Sala excluída com sucesso.' });
         } catch (error) {
